@@ -3,6 +3,7 @@ package com.gk.spring.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,15 +20,18 @@ public class FetchController {
 	@Autowired
 	private FetchService fetchService;
 
+	private static org.slf4j.Logger logger = LoggerFactory.getLogger(FetchController.class);
+
 	@GetMapping("/getbyid/{id}")
 	public Optional<Employee> getEmpByID(@PathVariable("id") int id) {
-		System.out.println(id);
+		logger.info("inside of class FetchController and getEmpByID method");
 		Optional<Employee> emp = fetchService.getEmpByID(id);
 		return emp;
 	}
 
 	@GetMapping("/empdata")
 	public ApiResponse<List<Employee>> getAllData() {
+		logger.info("inside of class FetchController and getAllData method");
 		List<Employee> emp = fetchService.getAllData();
 		String count = String.valueOf(emp.size());
 		return new ApiResponse<>("GET", count, emp);

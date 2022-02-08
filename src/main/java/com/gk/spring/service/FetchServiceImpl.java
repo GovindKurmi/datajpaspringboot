@@ -17,7 +17,6 @@ public class FetchServiceImpl implements FetchService {
 
 	@Override
 	public Optional<Employee> getEmpByID(int id) {
-		System.out.println("igg" + id);
 		Optional<Employee> emp = dao.findById(id);
 		return emp;
 	}
