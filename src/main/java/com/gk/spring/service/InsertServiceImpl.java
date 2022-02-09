@@ -1,5 +1,7 @@
 package com.gk.spring.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class InsertServiceImpl implements InsertService {
 	@Override
 	public Employee saveData(Employee employee) {
 		return insertDao.save(employee);
+	}
+
+	@Override
+	public List<Employee> saveAllData(List<Employee> employeelist) {
+		return insertDao.saveAll(employeelist);
 	}
 
 }
