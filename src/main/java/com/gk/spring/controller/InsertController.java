@@ -1,5 +1,7 @@
 package com.gk.spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,5 +21,10 @@ public class InsertController {
 	@PostMapping("/save")
 	public Employee saveData(@RequestBody Employee employee) {
 		return insertService.saveData(employee);
+	}
+
+	@PostMapping("/saveAllData")
+	public List<Employee> saveAllData(@RequestBody List<Employee> employeelist) {
+		return insertService.saveAllData(employeelist);
 	}
 }
