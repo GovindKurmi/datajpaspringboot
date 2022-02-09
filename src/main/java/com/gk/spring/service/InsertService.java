@@ -10,4 +10,6 @@ public interface InsertService {
 
 	public List<Employee> saveAllData(List<Employee> employeelist);
 
+	public void removeData(int id);
+
 }

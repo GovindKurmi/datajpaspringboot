@@ -24,4 +24,10 @@ public class InsertServiceImpl implements InsertService {
 		return insertDao.saveAll(employeelist);
 	}
 
+	@Override
+	public void removeData(int id) {
+		insertDao.deleteById(id);
+
+	}
+
 }
