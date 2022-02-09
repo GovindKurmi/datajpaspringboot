@@ -45,4 +45,9 @@ public class FetchController {
 		return new ApiResponse<>("GET", count, emp);
 	}
 
+	@GetMapping("/salaryTotal")
+	public Double getSalaryTotal() {
+		return fetchService.getSalaryTotal();
+	}
+
 }

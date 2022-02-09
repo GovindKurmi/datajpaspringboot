@@ -2,6 +2,7 @@ package com.gk.spring.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,13 @@ public class FetchServiceImpl implements FetchService {
 	public Page<Employee> sorting(String field) {
 		Page<Employee> emp = dao.findAll(PageRequest.of(0, 10, Sort.by(field).ascending()));
 		return emp;
+	}
+
+	@Override
+	public Double getSalaryTotal() {
+		List<Employee> list = dao.findAll();
+		Optional<Double> salaryTotal = list.stream().map(m -> m.getSalary()).reduce((a, b) -> a + b);
+		return salaryTotal.get();
 	}
 
 }
