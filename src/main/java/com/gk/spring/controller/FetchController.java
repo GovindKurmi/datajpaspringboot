@@ -49,5 +49,11 @@ public class FetchController {
 	public Double getSalaryTotal() {
 		return fetchService.getSalaryTotal();
 	}
+	
+
+	@GetMapping("/getdata")
+	public void getdata() {
+		
+	}
 
 }
