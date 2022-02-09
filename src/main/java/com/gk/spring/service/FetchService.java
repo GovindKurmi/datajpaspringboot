@@ -15,4 +15,6 @@ public interface FetchService {
 
 	public Page<Employee> sorting(String field);
 
+	public Double getSalaryTotal();
+
 }
