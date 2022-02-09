@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,13 @@ public class FetchController {
 		logger.info("inside of class FetchController and getAllData method");
 		List<Employee> emp = fetchService.getAllData();
 		String count = String.valueOf(emp.size());
+		return new ApiResponse<>("GET", count, emp);
+	}
+
+	@GetMapping("/sortby/{field}")
+	public ApiResponse<Page<Employee>> sorting(@PathVariable("field") String field) {
+		Page<Employee> emp = fetchService.sorting(field);
+		String count = String.valueOf(emp.getSize());
 		return new ApiResponse<>("GET", count, emp);
 	}
 
