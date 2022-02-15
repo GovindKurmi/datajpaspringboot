@@ -5,11 +5,12 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
+import com.gk.spring.exception.DataNotFoundException;
 import com.gk.spring.model.Employee;
 
 public interface FetchService {
 
-	public Optional<Employee> getEmpByID(int id);
+	public Optional<Employee> getEmpByID(int id)throws DataNotFoundException;
 
 	public List<Employee> getAllData();
 

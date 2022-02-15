@@ -2,16 +2,15 @@ package com.gk.spring.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.gk.spring.dao.FetchDao;
+import com.gk.spring.exception.DataNotFoundException;
 import com.gk.spring.model.Employee;
 
 @Service
@@ -21,8 +20,16 @@ public class FetchServiceImpl implements FetchService {
 	private FetchDao dao;
 
 	@Override
-	public Optional<Employee> getEmpByID(int id) {
-		Optional<Employee> emp = dao.findById(id);
+	public Optional<Employee> getEmpByID(int id) throws DataNotFoundException  {
+		boolean check = dao.existsById(id);
+		Optional<Employee> emp = null;
+		if (check == true) {
+			emp = dao.findById(id);
+		}
+		else {
+		  throw	new DataNotFoundException("id is not found");
+		}
+
 		return emp;
 	}
 

@@ -1,4 +1,4 @@
-package com.gk.spring.config;
+package com.gk.spring.exception;
 
 public class InvalidData extends Exception{
 

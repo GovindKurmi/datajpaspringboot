@@ -1,16 +1,16 @@
 package com.gk.spring.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "employee")
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,9 @@ public class Employee {
 	private String department;
 	private String company;
 	private double salary;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="flateNo", nullable = true)
-	private Address address;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "emp_id", referencedColumnName = "id", nullable = true)
+	private List<Address> address;
 
 	public int getId() {
 		return id;
@@ -72,11 +72,11 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Address getAddress() {
+	public List<Address> getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
 

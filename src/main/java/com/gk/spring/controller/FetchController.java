@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gk.spring.config.ApiResponse;
+import com.gk.spring.exception.DataNotFoundException;
 import com.gk.spring.model.Employee;
 import com.gk.spring.service.FetchService;
 
@@ -26,7 +27,12 @@ public class FetchController {
 	@GetMapping("/getbyid/{id}")
 	public Optional<Employee> getEmpByID(@PathVariable("id") int id) {
 		logger.info("inside of class FetchController and getEmpByID method");
-		Optional<Employee> emp = fetchService.getEmpByID(id);
+		Optional<Employee> emp = null;
+		try {
+			emp = fetchService.getEmpByID(id);
+		} catch (DataNotFoundException e) {
+			e.printStackTrace();
+		}
 		return emp;
 	}
 
@@ -49,11 +55,10 @@ public class FetchController {
 	public Double getSalaryTotal() {
 		return fetchService.getSalaryTotal();
 	}
-	
 
 	@GetMapping("/getdata")
 	public void getdata() {
-		
+
 	}
 
 }
